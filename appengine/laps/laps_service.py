@@ -1,6 +1,7 @@
 """Laps microservice."""
 
 import os
+import json
 import logging
 from google.appengine.api import urlfetch
 from flask import Flask
@@ -10,6 +11,7 @@ app = Flask(__name__)
 
 print os.environ.get('SERVER_SOFTWARE','')
 BASE_URL = 'https://8080-dot-3036522-dot-devshell.appspot.com'
+BASE_URL = 'http://localhost:8080'
 print urlfetch
 from google.appengine.api import app_identity
 #server_url_base = 'https://%s' % app_identity.get_default_version_hostname()
@@ -22,7 +24,7 @@ def increment_laps(barcode_number):
   print url
   result = urlfetch.fetch(
       url=url,
-      payload={'barcode_number': int(barcode_number)},
+      payload=json.dumps({'barcode_number': int(barcode_number)}),
       method=urlfetch.POST,
       headers={'Content-Type': 'application/json'},
       follow_redirects=False)
@@ -30,7 +32,7 @@ def increment_laps(barcode_number):
   print result
   print dir(result)
   print result.status_code
-  #print result.content
+  print result.content
   return 'Hello laps increment %s' % barcode_number
       
 
