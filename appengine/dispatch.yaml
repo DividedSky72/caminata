@@ -1,6 +1,10 @@
 application: river-glen
 dispatch:
+
   # Laps incrementer uses the laps service.
-  - url: "*/laps/increment/*"
+  - url: "*/laps/*"
     service: laps
 
+  # Laps incrementer uses the laps service.
+  - url: "*/barcodes/*"
+    service: barcodes

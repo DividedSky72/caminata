@@ -1,9 +1,9 @@
 application: river-glen
-module: laps
+module: barcodes
 runtime: python27
 api_version: 1
 threadsafe: true
 
 handlers:
 - url: /.*
-  script: laps_service.app
+  script: barcodes_service.app
