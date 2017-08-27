@@ -7,3 +7,5 @@ threadsafe: true
 handlers:
 - url: /.*
   script: barcodes_service.app
+  # https://issuetracker.google.com/issues/35899268, need to check headers.
+  # login: admin
