@@ -12,9 +12,9 @@ app = Flask(__name__)
 def hello():
   return 'Hello main!'
     
-@app.route('/foo')
-def hello_foo():
-  return 'Hello foo!'
+@app.route('/<foo>')
+def hello_foo(foo):
+  return 'Hello %s!' % foo
 
 
 

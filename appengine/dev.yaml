@@ -1,0 +1,28 @@
+application: river-glen
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+
+- url: /bower_components
+  static_dir: frontend/bower_components
+  secure: always
+
+- url: /images
+  static_dir: frontend/images
+  secure: always
+
+- url: /src
+  static_dir: frontend/src
+  secure: always
+
+- url: /manifest.json
+  static_files: frontend/manifest.json
+  upload: frontend/manifest.json
+  secure: always
+  
+- url: /.*
+  static_files: frontend/index.html
+  upload: frontend/index.html
+  secure: always

@@ -4,5 +4,25 @@ api_version: 1
 threadsafe: true
 
 handlers:
+
+- url: /bower_components
+  static_dir: frontend/build/es5-bundled/bower_components
+  secure: always
+
+- url: /images
+  static_dir: frontend/build/es5-bundled/images
+  secure: always
+
+- url: /src
+  static_dir: frontend/build/es-5bundled/src
+  secure: always
+
+- url: /manifest.json
+  static_files: frontend/build/es5-bundled/manifest.json
+  upload: frontend/build/es5-bundled/manifest.json
+  secure: always
+  
 - url: /.*
-  script: main.app
+  static_files: frontend/build/es5-bundled/index.html
+  upload: frontend/build/es5-bundled/index.html
+  secure: always

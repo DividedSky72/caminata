@@ -8,3 +8,4 @@ dispatch:
   # Laps incrementer uses the laps service.
   - url: "*/barcodes*"
     service: barcodes
+    

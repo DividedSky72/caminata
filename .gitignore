@@ -1,2 +1,3 @@
 *.pyc
 /appengine/lib
+/appengine/frontend/build
