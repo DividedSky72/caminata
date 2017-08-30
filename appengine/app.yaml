@@ -14,7 +14,7 @@ handlers:
   secure: always
 
 - url: /src
-  static_dir: frontend/build/es-5bundled/src
+  static_dir: frontend/build/es5-bundled/src
   secure: always
 
 - url: /manifest.json
