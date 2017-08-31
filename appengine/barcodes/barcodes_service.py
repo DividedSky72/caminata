@@ -22,17 +22,13 @@ class IncrementLapResponse(messages.Message):
 
 
 # Create the RPC service that handles barcodes.
-class BarcodesService(remote.Service):
+class BarcodesService(utils.CaminataService):
   """RPC service that handles barcodes."""
-
-  def initialize_request_state(self, state):
-    # Make sure header is internal.
-    if state.headers[utils.INTERNAL_HEADER] != utils.APP_ID:
-      raise remote.RequestError('Request did not come internally.')
 
   @remote.method(IncrementLapRequest, IncrementLapResponse)
   def increment_lap_count(self, request):
     return IncrementLapResponse(student_last_name='Foo')
+
 
 # Map the RPC service.
 app = service.service_mappings([('/barcodes', BarcodesService)])

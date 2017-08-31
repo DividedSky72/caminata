@@ -2,8 +2,9 @@
 
 import logging
 import flask
+import os
 import utils
-
+from google.appengine.api import users
 
 class _CustomFlask(flask.Flask):
   jinja_options = flask.Flask.jinja_options.copy()
@@ -25,20 +26,21 @@ else:
   template_folder = 'frontend/build/es5-bundled'
 app = _CustomFlask(__name__, template_folder=template_folder)
 
+
 @app.route('/caminata')
-def caminata():
-	return flask.render_template('index.html', user='user')
+def caminata_root():
+  user = users.get_current_user()
+  print user.nickname(), user.user_id()
+  return flask.render_template('index.html')
 
 
-'''
 @app.route('/')
-def hello():
-  return 'Hello main!'
-    
-@app.route('/<foo>')
-def hello_foo(foo):
-  return 'Hello %s!' % foo
-'''
+def root():
+  print users.create_logout_url('http://www.google.com')
+  return flask.redirect(
+      os.path.join(utils.get_server_base(), 'caminata'), code=302)
+
+
 
 
 

@@ -1,0 +1,10 @@
+service: caminata_users
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /.*
+  script: caminata_users.app
+  # https://issuetracker.google.com/issues/35899268, need to check headers.
+  # login: admin

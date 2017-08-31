@@ -2,21 +2,22 @@ import os
 import functools
 from google.appengine.api import app_identity
 from google.appengine.api import users
+from protorpc import remote
 
 JSON_MIME_TYPE = 'application/json'
 INTERNAL_HEADER = 'X-Appengine-Inbound-Appid'
 APP_ID = 'river-glen'
 
 
-def login_required(func):
-  """Redirect to login if user isn't logged in."""
-  print users.create_logout_url("/")
-  @functools.wraps(func)
-  def decorated_view(*args, **kwargs):
-    if not users.get_current_user():
-      return redirect(users.create_login_url(request.url))
-    return func(*args, **kwargs)
-  return decorated_view
+class CaminataService(remote.Service):
+  """Superclass that all caminata sprotorpc ervices should inherit from.
+  
+  This is so we can use initialize_request_state easily.
+  """
+  def initialize_request_state(self, state):
+    # Make sure header is internal.
+    if state.headers[INTERNAL_HEADER] != APP_ID:
+      raise remote.RequestError('Request did not come internally.')
 
 
 def is_dev_server():

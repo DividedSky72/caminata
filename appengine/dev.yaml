@@ -28,7 +28,14 @@ handlers:
   
 - url: /caminata
   script: main.app  
+  login: required
+  secure: always
   
+- url: /
+  script: main.app  
+  login: required
+  secure: always
+
 - url: /.*
   static_files: frontend/index.html
   upload: frontend/index.html
