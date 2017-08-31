@@ -1,7 +1,11 @@
-application: river-glen
 runtime: python27
 api_version: 1
 threadsafe: true
+
+# Third party libraries loaded from the App Engine environment.
+libraries:
+- name: jinja2
+  version: "2.6"
 
 handlers:
 
@@ -22,7 +26,11 @@ handlers:
   upload: frontend/build/es5-bundled/manifest.json
   secure: always
   
+- url: /caminata
+  script: main.app
+  
 - url: /.*
   static_files: frontend/build/es5-bundled/index.html
   upload: frontend/build/es5-bundled/index.html
   secure: always
+  application_readable: true

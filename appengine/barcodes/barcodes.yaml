@@ -1,5 +1,4 @@
-application: river-glen
-module: barcodes
+service: barcodes
 runtime: python27
 api_version: 1
 threadsafe: true
