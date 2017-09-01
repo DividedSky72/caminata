@@ -8,3 +8,6 @@ dispatch:
   - url: "*/barcodes*"
     service: barcodes
     
+  # Laps incrementer uses the laps service.
+  - url: "*/caminata_users*"
+    service: caminata-users
